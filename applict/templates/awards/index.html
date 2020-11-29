@@ -7,5 +7,10 @@
 </head>
 <body>
   <h1>Cloudinary</h1>
+
+  {% for picture in pictures %}
+
+      <img src="{{ picture.image.url }}">
+  {% endfor %}
 </body>
 </html>
