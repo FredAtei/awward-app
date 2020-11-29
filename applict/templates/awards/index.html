@@ -8,7 +8,7 @@
 
       <li class="row mt-5 hvr-grow border-bottom">
         <div class="col-md-3">
-          <a href="{% url 'project' post.id %}"><span style="display: none;">{{ post.sitename }}</span><img
+          <a href="{% url 'project' post.id %}"><span style="display: none;">{{ post.project_name }}</span><img
                   src="{{ post.image.url }}" class="img-thumbnail" width="500"></a>
         </div>
         <div class="col-md-9 project-font">
@@ -18,14 +18,12 @@
               <img src="{{ user.profile.profile_photo.url }}" class="rounded-circle" width="40" height="40">
             <span class="username mx-2" style="font-size: 25px;">{{post.user}}</span></button></a>
           <div class="ml-4">
-            <p>Project Name: {{ post.sitename }}</p>
+            <p>Project Name: {{ post.project_name }}</p>
             <p>Description: {{ post.desc }}</p>
-            <p>Technologies: {{ post.technologies }}</p>
-            <p>Categories: {{ post.categories }}</p>
-            <p class=""><a href="{{ post.link }}">
+            <p>Built with: {{ post.technologies }}</p>
+            <p><a href="{{ post.link }}">
               <button class="btn btn-lg">LINK</button>
             </a></p>
-            <p class="text-muted float-right">{{ post.post_date }}</p>
           </div>
         </div>
       </li>

@@ -1,0 +1,25 @@
+{% extends 'awards/base.html' %}
+{% load bootstrap3 %} {% load static %}
+
+{% block content %}
+<div class="container mt-5" style="color: black;">
+	<div class="card border p-5">
+		<div class="card-header border-bottom">
+      <h3>Submit</h3>
+		</div>
+		<form action="{%url 'new_post'%}" method="post" enctype="multipart/form-data">
+			<div class="card-body border-0">
+				{%csrf_token%}
+
+				{% bootstrap_form form%}
+
+			</div>
+			<div class="card-footer border-top">
+				<input type="submit" class="btn btn-success btn-lg animated pulse infinite slow" value="POST">
+
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}
