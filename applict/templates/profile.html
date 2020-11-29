@@ -2,63 +2,56 @@
 {% load crispy_forms_tags %}
 {% load bootstrap3% }
 {% block content %}
-<div class="container" style="margin-top:8%">
-    <div class="content-section">
-        <div class="media">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">
-                        <img class="rounded-circle account-img" src="{{user.profile.profile_photo.url}}" style="width: 200px;height:160px; border-radius: 10px; ">
-                    </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="media-body">
-                            <div class="account-heading"><span class="mr-3 text-secondary username">{{ user.username }}</span>
-                                <a class="btn btn-sm btn-outline-secondary mr-3" data-toggle="modal" data-target=".bd-example-modal-md" href=""><strong>Edit Profile</strong></a>
-                               
-                            </div>
+<div class="container" style="background-color: #e6edee;">
+	<span class="float-left container ml-5 mt-3">
+		
+	</span>
+	<div class="container  hvr-float-shadow"  style="color: black;">
+		<div class="profile-layout text-center">
+			<div>
+				<img src="{{ user.profile.profile_photo.url }}" class="rounded-circle border responsive hvr-grow" alt="..."
+				     height="120"
+				     width="120">
+			</div>
+			<h1 class="text-uppercase mt-3 font-weight-bold" style= "font-size: 15px;">{{ user.profile.user }}</h1>
+			<hr style="width: 100px; color: black;">
+			<a href="{{ user.email }}"  ><h4 class="text-body" >{{ user.email }}</h4></a>
+			<div>
+				<h6 class="font-weight-bold mt-3" >{{ user.profile.bio }}</h6>
+			</div>
+			<div>
+				<a href="/new/profile" style="text-decoration: none; ">
+					<button class="btn btn-lg mx-3 mt-4 hvr-float-shadow ">Edit Profile</button>
+				</a>
+			</div>
+			<span class="text-muted" style="font-size: 10px;">Last modified: {{ user.profile.updated_at }}</span>
+		</div>
+	</div>
+</div>
+<div class="container mt-5">
+	<h1 class="text-center" style="color: black;">PROJECTS</h1>
+	<hr style="width: 80px">
+	{% for project in posts %}
+	{% if project.user == user.profile.user %}
+	<div class="row mt-5 hvr-grow ">
+		<div class="col-md-3">
+			<img src="{{ project.image1.url }}" class="img-thumbnail" width="500">
+		</div>
+		<div class="col-md-9">
+			<p>Project Name: {{ project.sitename }}</p>
+			<p>Description: {{ project.desc }}</p>
+			<p>Technologies: {{ project.technologies }}</p>
+			<p>Categories: {{ project.categories }}</p>
+			<p class=""><a href="{{ project.link }}">
+				<button class="btn hvr-bubble-float-bottom">LINK</button>
+			</a></p>
+			<p class="text-muted float-right">{{ project.post_date }}</p>
+		</div>
+	</div>
+	<hr>
+	{% endif %}
+	{% endfor %}
 
-                            <div class="post-details mt-3 mb-3">
-                                <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
-                                <span class="mr-5"> <strong>0</strong> followers</span>
-                                <span class="mr-5"> <strong>0</strong> following</span>
-                            </div>
-                            <h5><strong></strong>{{ user.profile.name }}</h5>
-                            <p class="text-secondary"> <strong>BIO:</strong> 
-                                {{user.profile.bio }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <a class="D-block mx-auto" href="/accounts/password/change">Change Password</a>
-                        <hr>
-                        <a class="D-block mx-auto" href="/logout/">Log Out</a>
-                        <hr>
-                        <a class="D-block mx-auto" href="" data-dismiss="modal">Close</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-md " style="width: 400px;">
-                <div class="modal-content" style="padding: 5%; width:100%;">
-                    <form action="" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
-                        {% csrf_token%}
-                        {{ user_form|crispy}}
-                        {{prof_form|crispy}}
-                        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="mt-4">
 </div>
 
 {% endblock %}

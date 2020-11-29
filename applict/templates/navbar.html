@@ -14,15 +14,15 @@
 
           <ul class="navbar-nav navbar-right">
               {% if user.is_authenticated%}
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown" style="margin-right:20px; margin-top: 5px; font-size: 25px;">
                   <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                      aria-haspopup="true"
                      aria-expanded="false">{{ user.username|title }}
                   </a>
                   <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item text-center" href="#">Profile</a>
+                      <a class="dropdown-item text-center" href="{% url 'profile' profile_id=user.id %}" style="margin-left: 10px;">Profile</a>
                     <hr>
-                      <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item">Log Out</a>
+                      <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item" style="margin-left: 10px;">Log Out</a>
 
 
                   </div>
