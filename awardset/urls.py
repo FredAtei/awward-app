@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from applict import views
+from django.contrib.auth import views 
+from django.conf.urls import url,include
+from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index, name='index')
+    path('accounts/', include('django_registration.backends.one_step.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    url('^accounts/register/',
+        RegistrationView.as_view(success_url='/accounts/login'),
+        name='django_registration_register'),
+    url(r'^admin/', admin.site.urls),
+    url(r'',include('applict.urls')),
+    url(r'^logout/$', views.LoginView.as_view(), {"next_page": '/'}), 
+    url(r'^tinymce/', include('tinymce.urls'))
 ]
