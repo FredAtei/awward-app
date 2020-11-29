@@ -8,7 +8,6 @@ urlpatterns=[
     url(r'^profile/(?P<profile_id>\d+)', views.profile, name='profile'),
     url(r'^new/profile/$', views.addprofile, name='new-profile'),
     url(r'^new/post$', views.new_post, name='new_post'),
-     url(r'^project/(\d+)$', views.single_project, name='project'),
     
 ]
 if settings.DEBUG:

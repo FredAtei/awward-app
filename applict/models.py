@@ -43,7 +43,12 @@ class Project(models.Model):
         self.save()
 
     def delete_project(self):
-        self.delete()           
+        self.delete()        
+
+    @classmethod
+    def get_images(cls):
+        all_images = cls.objects.all()
+        return all_images       
 
 class Rating(models.Model):
     ratings = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'))
