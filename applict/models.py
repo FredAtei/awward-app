@@ -32,10 +32,9 @@ class Profile(models.Model):
 
 class Project(models.Model):
     image = CloudinaryField('image')
-    sitename = models.CharField(max_length=50,null=True)
+    project_name = models.CharField(max_length=50,null=True)
     link = models.CharField(max_length=50, null=True)
-    date_posted = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
         return self.sitename
@@ -45,3 +44,22 @@ class Project(models.Model):
 
     def delete_project(self):
         self.delete()           
+
+class Rating(models.Model):
+    ratings = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'))
+    post = models.ForeignKey(Project, on_delete=models.CASCADE,)
+    pub_date = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    usability = models.IntegerField(default=0,null=True)
+    design_rating = models.IntegerField(default=0, null=True)
+    content_rating = models.IntegerField(default=0,null=True)
+    review = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.review
+
+    def save_rating(self):
+        self.save()
+
+    def delete_rating(self):
+        self.delete()       

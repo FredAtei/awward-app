@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import Profile
+from django.contrib.auth.models import User
+from .models import Profile, Project
 from django.contrib.auth.decorators import login_required
 from .forms import UpdateUserForm,UpdateUserProfileForm
 from django.http import HttpResponseRedirect, JsonResponse
@@ -8,7 +9,11 @@ from django.http  import HttpResponse,Http404
 # Create your views here.
 
 def index(request):
-    return render(request, 'awards/index.html')
+    posts = Project.objects.all().order_by('-date_posted')
+    users = User.objects.exclude(id=request.user.id)
+    current_user = request.user
+
+    return render(request, 'awards/index.html',{'posts':posts,'user':current_user,'users':users})
 
 @login_required(login_url='/accounts/login')
 def profile(request,profile_id):
