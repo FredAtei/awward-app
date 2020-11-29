@@ -20,13 +20,13 @@ from django.conf.urls import url,include
 from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
-    path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    url('^accounts/register/',
-        RegistrationView.as_view(success_url='/accounts/login'),
-        name='django_registration_register'),
     url(r'^admin/', admin.site.urls),
     url(r'',include('applict.urls')),
     url(r'^logout/$', views.LoginView.as_view(), {"next_page": '/'}), 
+    url('^accounts/register/',
+        RegistrationView.as_view(success_url='/accounts/login'),
+        name='django_registration_register'),
+    url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^tinymce/', include('tinymce.urls'))
 ]
