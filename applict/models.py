@@ -29,3 +29,19 @@ class Profile(models.Model):
             instance.profile.save()
         except ObjectDoesNotExist:
             Profile.objects.create(user=instance)
+
+class Project(models.Model):
+    image = CloudinaryField('image')
+    sitename = models.CharField(max_length=50,null=True)
+    link = models.CharField(max_length=50, null=True)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
+
+    def __str__(self):
+        return self.sitename
+
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()           
