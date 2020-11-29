@@ -1,5 +1,4 @@
-{% extends 'awwards/base.html' %}
-{% load crispy_forms_tags %}
+{% extends 'awards/base.html' %}
 {% load bootstrap3% }
 {% block content %}
 <div class="container" style="background-color: #e6edee;">
@@ -24,12 +23,11 @@
 					<button class="btn btn-lg mx-3 mt-4 hvr-float-shadow ">Edit Profile</button>
 				</a>
 			</div>
-			<span class="text-muted" style="font-size: 10px;">Last modified: {{ user.profile.updated_at }}</span>
 		</div>
 	</div>
 </div>
 <div class="container mt-5">
-	<h1 class="text-center" style="color: black;">PROJECTS</h1>
+	<h1 class="text-center" style="color: black;">Projects</h1>
 	<hr style="width: 80px">
 	{% for project in posts %}
 	{% if project.user == user.profile.user %}
