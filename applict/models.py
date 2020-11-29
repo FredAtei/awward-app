@@ -56,8 +56,8 @@ class Rating(models.Model):
     pub_date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
     usability = models.IntegerField(default=0,null=True)
-    design_rating = models.IntegerField(default=0, null=True)
-    content_rating = models.IntegerField(default=0,null=True)
+    design = models.IntegerField(default=0, null=True)
+    content = models.IntegerField(default=0,null=True)
     review = models.CharField(max_length=200)
 
     def __str__(self):
