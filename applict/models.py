@@ -67,4 +67,4 @@ class Rating(models.Model):
         self.save()
 
     def delete_rating(self):
-        self.delete()       
+        self.delete()               
