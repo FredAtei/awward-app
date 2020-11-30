@@ -14,7 +14,7 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = [ 'name','profile_picture', 'bio']        
+        fields = ['profile_picture']        
 
 class ProjectForm(forms.ModelForm):
     class Meta:

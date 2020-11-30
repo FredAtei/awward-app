@@ -8,7 +8,7 @@ from django.http  import HttpResponse,Http404
 from django.db.models import Avg
 
 # Create your views here.
-
+@login_required(login_url='/accounts/login')
 def index(request):
     posts = Project.objects.all()
     users = User.objects.exclude(id=request.user.id)
@@ -81,5 +81,4 @@ def projects(request, c_id):
     content = Rating.objects.filter(post_id=c_id).aggregate(Avg('content'))
     design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design'))
 
-    return render(request, 'project.html',
-                  {"project": current_project, "user": current_user, 'ratings': ratings, "design": design,"content": content, "usability": usability})      
+    return render(request, 'viewproject.html',{"project": current_project, "user": current_user, 'ratings': ratings, "design": design,"content": content, "usability": usability})      

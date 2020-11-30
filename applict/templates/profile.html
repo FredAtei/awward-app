@@ -8,7 +8,7 @@
 	<div class="container  hvr-float-shadow"  style="color: black;">
 		<div class="profile-layout text-center">
 			<div>
-				<img src="{{ user.profile.profile_photo.url }}" class="rounded-circle border responsive hvr-grow" alt="..."
+				<img src="{{ user.profile.profile_picture.url }}" class="rounded-circle border responsive hvr-grow" alt="..."
 				     height="120"
 				     width="120">
 			</div>
@@ -16,10 +16,7 @@
 			<hr style="width: 100px; color: black;">
 			<a href="{{ user.email }}"  ><h4 class="text-body" >{{ user.email }}</h4></a>
 			<div>
-				<h6 class="font-weight-bold mt-3" >{{ user.profile.bio }}</h6>
-			</div>
-			<div>
-				<a href="/new/profile" style="text-decoration: none; ">
+				<a href="/new/profile/" style="text-decoration: none; ">
 					<button class="btn btn-lg mx-3 mt-4 hvr-float-shadow ">Edit Profile</button>
 				</a>
 			</div>
@@ -28,7 +25,7 @@
 </div>
 <div class="container mt-5">
 	<h1 class="text-center" style="color: black;">Projects</h1>
-	<hr style="width: 80px">
+	<hr style="width: 50px">
 	{% for project in posts %}
 	{% if project.user == user.profile.user %}
 	<div class="row mt-5 hvr-grow ">

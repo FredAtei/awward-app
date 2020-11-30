@@ -37,7 +37,7 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
     def __str__(self):
-        return self.sitename
+        return self.project_name
 
     def save_project(self):
         self.save()

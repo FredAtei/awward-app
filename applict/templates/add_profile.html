@@ -1,47 +1,54 @@
 {%extends "awards/base.html" %}
 {% load bootstrap3 %}
+{% load crispy_forms_tags %}
 {% load static %}
-{%block content%}
+{% block content %}
+
 <div class="container">
-
-
-<div class="row">
-    <!-- Empty div -->
-    <div class="col-md-3 phones" >
-
-    </div>
-    <div class="col-md-6 panel-form" >
-
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          <h4 class="text-center">
-              Add profile 
-          </h4>
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-3 phones" >
+           
         </div>
-        <div class="panel-body">
-
-            <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
-                {%csrf_token%}
-
-                {% bootstrap_form form%}
-
-                <div class="form-group" style=" width: 100%;">
-                    <input type="submit" class="btn btn-primary " value="Create"  style="align-items: center; width: 100%;" >
-
-                </div>
-
-            <input type="hidden" name="next" value="{{next}}">
-              </form>
+        <div class="col-md-6 panel-form" >
+          
+          <div class="panel panel-default">
+    
+            <div class="panel-heading" style="background-color:#5bc0de;">
+              <h4 class="text-center " style="background-color:#5bc0de; color:white ; font-weight: bolder;">
+                  Edit Profile
+              </h4>
+            </div>
+            <div class="panel-body" style="background-color: #f7fbfc; color: black;">
+                  
+                <form  action="{%url 'new-profile'%}" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                  
+                    {{ user_form|crispy}}
+                    {{prof_form|crispy}}
+    
+                    <div class="form-group" style=" width: 100%; margin-top: 5%;">
+                        <input type="submit" class="btn " value="Update"  style="align-items: center; width: 100%; background-color: #5bc0de; color: white;" >
+                    </div>
+    
+                <input type="hidden" name="next" value="{{next}}">
+                  </form>
+    
+    
+              
+    
+            </div>
+    
+          </div>
+    
         </div>
+        <!-- empty div -->
+        <div class="col-md-2"></div>
       </div>
-    </div>
-    <!-- empty div -->
-    <div class="col-md-2"></div>
-  </div>
-</div>  
-  {% block scripts %}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% bootstrap_javascript %}
+    </div>  
+    
+      {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      {% bootstrap_javascript %}
+    {% endblock %}
 {% endblock %}
-{%endblock%}
